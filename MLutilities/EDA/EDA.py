@@ -23,7 +23,7 @@ def kolmogorov_test(
     bins: int = 30,
     color: str = None,
     plot_boxplot: bool = False,
-    backend: str = "seaborn",
+    backend: str = "plotly",
 ):
     """
     This function computes Kolmogorov test to check if the variable
@@ -97,13 +97,13 @@ def kolmogorov_test(
             AAAAA
             AAAAA
             """
-                fig, ax = plt.subplot_mosaic(mosaic, figsize=(20, 10))
+                fig, ax = plt.subplot_mosaic(mosaic, figsize=(20, 10), sharex=True)
                 sns.kdeplot(x=x, hue=dataset[color] if color else None, ax=ax["A"])
                 sns.boxplot(x=x, y=dataset[color] if color else None, ax=ax["a"])
                 ax["A"].set_ylabel("Density", size=15)
                 ax["A"].set_xlabel(variable, size=15)
             else:
-                fig, ax = plt.subplots(figsize=(20, 10))
+                fig, ax = plt.subplots(figsize=(20, 10), constrained_layout=True)
                 sns.kdeplot(x=x, hue=dataset[color] if color else None, ax=ax)
                 ax.set_ylabel("Density", size=15)
                 ax.set_xlabel(variable, size=15)

@@ -62,7 +62,7 @@ def kolmogorov_test_widget(dataset: pd.DataFrame):
         style={"description_width": "initial"},
     )
     backend = widgets.Dropdown(
-        options=["seaborn", "plotly"],
+        options=["plotly", "seaborn"],
         description="Backend:",
         layout=widgets.Layout(width="20%", height="30px"),
         style={"description_width": "initial"},

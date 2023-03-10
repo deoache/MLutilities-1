@@ -14,7 +14,7 @@ from MLutilities.EDA import (
 from IPython.display import display
 
 
-def kolmogorov_test_widget(dataset: pd.DataFrame, backend: plotly):
+def kolmogorov_test_widget(dataset: pd.DataFrame, backend: "plotly"):
     """
     This function computes Kolmogorov test to check if the variable
     is normaly distributed

@@ -18,12 +18,9 @@ def kolmogorov_test_widget(dataset: pd.DataFrame):
     """
     This function computes Kolmogorov test to check if the variable
     is normaly distributed
-
     H0: The variable follows a normal distribution
     H1: The variable do not follow a normal distribution
-
     if p_value < 0.05 you can reject the null hypohesis
-
     Arguments:
         dataset: pandas dataframe or dict with de format {'col1':np.array, 'col2':np.array}
     """
@@ -55,13 +52,13 @@ def kolmogorov_test_widget(dataset: pd.DataFrame):
         max=50,
         value=30,
         continuous_update=False,
-        layout=widgets.Layout(width="20%", height="100px"),
+        layout=widgets.Layout(width="20%", height="40px"),
         style={"description_width": "initial"},
     )
     plot_boxplot = widgets.Checkbox(
         value=False,
-        description="Plot boxplot",
-        layout=widgets.Layout(width="20%", height="30px"),
+        description="boxplot",
+        layout=widgets.Layout(width="5%", height="5px"),
         style={"description_width": "initial"},
     )
     backend = widgets.Dropdown(
@@ -84,15 +81,9 @@ def kolmogorov_test_widget(dataset: pd.DataFrame):
     )
 
     display(
-        widgets.VBox(
-            [
-                widgets.VBox([variable, color, transformation, backend]),
-                plot_boxplot,
-                bins,
-            ]
-        ),
-        w,
+        widgets.VBox([variable, color, transformation, backend, bins, plot_boxplot]), w
     )
+
 
 
 def shapiro_test_widget(dataset: pd.DataFrame):

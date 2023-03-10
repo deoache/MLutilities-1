@@ -14,7 +14,7 @@ from MLutilities.EDA import (
 from IPython.display import display
 
 
-def kolmogorov_test_widget(dataset: pd.DataFrame):
+def kolmogorov_test_widget(dataset: pd.DataFrame, backend: plotly):
     """
     This function computes Kolmogorov test to check if the variable
     is normaly distributed
@@ -61,27 +61,20 @@ def kolmogorov_test_widget(dataset: pd.DataFrame):
         layout=widgets.Layout(width="5%", height="5px"),
         style={"description_width": "initial"},
     )
-    backend = widgets.Dropdown(
-        options=["plotly", "seaborn"],
-        description="Backend:",
-        layout=widgets.Layout(width="20%", height="30px"),
-        style={"description_width": "initial"},
-    )
 
     w = widgets.interactive_output(
-        partial(kolmogorov_test, dataset=dataset, plot_histogram=True),
+        partial(kolmogorov_test, dataset=dataset, plot_histogram=True, backend=backend),
         {
             "variable": variable,
             "transformation": transformation,
             "color": color,
             "bins": bins,
             "plot_boxplot": plot_boxplot,
-            "backend": backend,
         },
     )
 
     display(
-        widgets.VBox([variable, color, transformation, backend, bins, plot_boxplot]), w
+        widgets.VBox([variable, color, transformation, bins, plot_boxplot]), w
     )
 
 
